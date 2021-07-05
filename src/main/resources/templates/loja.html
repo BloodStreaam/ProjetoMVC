@@ -1,0 +1,108 @@
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <link href="../static/css/loja.css" th:href="@{/css/loja.css}" rel="stylesheet" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Loja</title>
+</head>
+
+<body id="content">
+<!--Header que contem o botão menu, o carrinho e opções extras-->
+<div class="header">
+    <!--<span onclick="openNav()"></span>-->
+    <div class="header-right">
+        <a class="active" >Store</a>
+        <a type="submit" href="/Perfil_cliente" class="active">Profile</a>
+        <a type="submit" id="myBtn" class="active fa fa-shopping-cart" style="font-size:36px"></a>
+    </div>
+    <div class="title" >
+        <span class="w3-padding-large w3-black w3-xlarge ">Farmers Market</span>
+    </div>
+</div>
+
+<div>
+    <div class="row" >
+        <div class="column" th:each="product : ${products}">
+            <form action="#" th:action="@{/loja}"   th:method="post"   modelAttribute="userFormData">
+
+                <input type="hidden" name="product_id" th:value="${product.product_id}" />
+
+                <span>Name:</span><span   th:text="${product.name}" ></span> <br/>
+                <input type="hidden" name="name" th:value="${product.name}" />
+
+                <span>Price:</span><span  th:text="${product.price_un}"></span><span>€</span><br/>
+                <input type="hidden" name="price_un" th:value="${product.price_un}"/>
+
+                <span>Remaining :</span><span  th:text="${product.pr_quantity}"></span><br/>
+                <input type="hidden" name="pr_quantity" th:value="${product.pr_quantity}"/>
+
+                <input type="number"  name="quantityRequested" th:field="${product.quantityRequested}" min="1">
+                <button class="button button1" type="submit">Add</button>
+            </form>
+
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <h2 style="position: relative; left: 25px; ">Contacts:</h2>
+    <p1 style="position: relative; left: 35px; ">Phone number: 916799092 Mail: farmers@market.pt Addres: Rua das Couves </p1>
+</footer>
+
+</body>
+
+<!-- The Modal Do Carrinho-->
+<div id="myModalCarrinho" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <span class="close">&times;</span>
+
+        <div class ="row" th:each="prodcart : ${carrinho}">
+            <form action="#" th:action="@{/loja/remove}"  modalAttribute="remove_update">
+                <input type="hidden" name="product_id" th:value="${prodcart.product_id}">
+                <span>Name:</span><span th:text="${prodcart.name}"></span> <br/>
+                <span>Price:</span><span th:text="${prodcart.price_un}"></span><span>€</span><br/>
+                <input type="number" name="quantityRequested" th:value="*{prodcart.quantityRequested}" min="1">
+                <input type="submit" value="Remove">
+            </form>
+
+        </div>
+
+        <div class="row">
+            <a type="button" class="a" href="/pagamento" value="Registration">Buy Cart</a>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // Get the modal
+    var modal = document.getElementById("myModalCarrinho");
+
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks the button, open the modal
+    btn.onclick = function() {
+        modal.style.display = "block";
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+</script>
+
+</html>

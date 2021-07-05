@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <link href="../static/css/login.css" th:href="@{/css/login.css}" rel="stylesheet" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body id="content">
+<div >
+  <div class="title" >
+    <span class="w3-padding-large w3-black w3-xxlarge ">Farmers Market</span>
+  </div>
+  <div class="title" >
+    <span class="w3-padding-large w3-black w3-xxlarge ">Login</span>
+  </div>
+</div>
+
+<form action="#" th:action="@{/login}" th:object="${client}" method="post" >
+  <div class="row">
+    <div class="col">
+      <input type="text"  th:field="*{mail}"  name="username" placeholder="Username" required>
+      <input type="password" th:field="*{password}" name="password" placeholder="Password" required>
+      <input type="submit" value="Login">
+      <a type="button" href="/register" value="Registration" style="text-align: center">Register</a>
+    </div>
+  </div>
+</form>
+
+
+<footer class="footer">
+  <h2 style="position: relative; left: 25px; ">Contacts:</h2>
+  <p1 style="position: relative; left: 35px; ">Phone number: 916799092 Mail: farmers@market.pt Addres: Rua das Couves </p1>
+</footer>
+</body>
+</html>

@@ -1,0 +1,11 @@
+.newsletter-bg {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 30px;
+    margin: 0 auto;
+    background-position: center -100px;
+    -webkit-filter: blur(7px);
+}

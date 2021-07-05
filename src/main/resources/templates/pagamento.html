@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <link href="../static/css/pagamento.css" th:href="@{/css/pagamento.css}" rel="stylesheet" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body id="content">
+<div class="title" >
+    <span class="w3-padding-large w3-black w3-xlarge ">Farmers Market</span>
+</div>
+<div class="row">
+    <div class="col-75">
+        <div class="container">
+
+            <div class ="row">
+                <div class="col-50">
+                    <div class="container">
+                        <form action="#"  method="post" th:action="@{/pagamento}" modelAttribute="metodoEscolha">
+                            <div th:each="method: ${methods}" >
+                                <input type="hidden" name="payment_id"  th:value="${method.payment_id}" />
+                                <input href='#target' id='target' class="input" type="submit" name="method"  th:value="${method.method}" />
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-50" th:switch="${metodo}">
+                    <div  th:case="'MBWAY'">
+                        <input type="number" placeholder="Cellphone Number"/>
+
+                    </div>
+
+
+                    <div  th:case="'Transfer'">
+                        <div class="container">
+                            <label>Information to make the transfer with be in the incoming email once you finished the buy</label>
+                        </div>
+                    </div>
+
+                    <div th:case="'Card'">
+                        <h3>Payment</h3>
+
+                        <label for="cname">Name on Card</label>
+                        <input type="text" id="cname" name="cardname" placeholder="John More Doe">
+                        <label for="ccnum">Credit card number</label>
+                        <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444">
+                        <label for="expmonth">Exp Month</label>
+                        <input type="text" id="expmonth" name="expmonth" placeholder="September">
+                        <div class="row">
+                            <div class="col-50">
+                                <label for="expyear">Exp Year</label>
+                                <input type="text" id="expyear" name="expyear" placeholder="2018">
+                            </div>
+                            <div class="col-50">
+                                <label for="cvv">CVV</label>
+                                <input type="text" id="cvv" name="cvv" placeholder="352">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <form action="#" th:action="@{/pagamento/carrinho}" th:method="post"   modelAttribute="compraCarrinho">
+                <input type="submit" value="Finish Purchase" class="btn">
+            </form>
+        </div>
+    </div>
+    <div class="col-25">
+        <div class="container">
+            <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i></span></h4>
+            <div th:each="prodcart : ${carrinho}">
+                <p><a href="#" th:text="${prodcart.name}"></a> <span th:text="${prodcart.quantityRequested} + 'x' + ${prodcart.price_un} + '€'" class="price"></span></p>
+            </div>
+            <hr>
+            <p>Total <span class="price" th:text="${totalCarrinho}" style="color:black"><b></b></span></p>
+        </div>
+    </div>
+</div>
+<footer class="footer">
+    <h2 style="position: relative; left: 25px; ">Contacts:</h2>
+    <p1 style="position: relative; left: 35px; ">Phone number: 916799092 Mail: farmers@market.pt Addres: Rua das Couves </p1>
+</footer>
+</body>
+</html>

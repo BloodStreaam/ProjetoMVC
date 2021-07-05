@@ -1,0 +1,39 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link href="../static/css/register.css" th:href="@{/css/register.css}" rel="stylesheet" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body id="content">
+
+
+<div >
+  <div class="title" >
+    <span class="w3-padding-large w3-black w3-xxlarge ">Farmers Market</span>
+  </div>
+  <div class="title" >
+    <span class="w3-padding-large w3-black w3-xxlarge ">Register</span>
+  </div>
+</div>
+
+<form action="#" th:action="@{/register}" th:object="${client}" method="post">
+<div class="row">
+  <div class="col">
+    <input type="text"  th:field="*{name}"  name="username" placeholder="Name" required>
+    <input type="text"  th:field="*{mail}"  name="email" placeholder="Email" required>
+    <input type="password" th:field="*{password}" name="password" placeholder="Password" required>
+    <input type="text"  th:field="*{birthdate}"  name="birthdate" placeholder="Birthdate(yyyy-mm-dd)" required>
+    <input type="password" th:field="*{phone}" name="phone" placeholder="Phone" required>
+    <input type="submit" value="Register">
+    <a type="button" href="/login" value="Registration" style="text-align: center">Back</a>
+
+  </div>
+</div>
+</form>
+<footer class="footer">
+  <h2 style="position: relative; left: 25px; ">Contacts:</h2>
+  <p1 style="position: relative; left: 35px; ">Phone number: 916799092 Mail: farmers@market.pt Address: Rua das Couves </p1>
+</footer>
+</body>
+</html>

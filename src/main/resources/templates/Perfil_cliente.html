@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link href="../static/css/Perfil_cliente.css" th:href="@{/css/Perfil_cliente.css}" rel="stylesheet" />
+
+</head>
+
+<body id="content">
+
+<div >
+  <div class="title" >
+    <span class="w3-padding-large w3-black w3-xxlarge ">Farmers Market</span>
+  </div>
+  <div class="title" >
+    <span class="w3-padding-large w3-black w3-xxlarge ">Client Profile</span>
+  </div>
+</div>
+
+<form action="#" th:action="@{/Perfil_cliente}" th:object="${Client}" method="post" class="up" modelAttribute="userInfo">
+  <div class="row">
+    <div class="col">
+      <input type="text"  th:value="*{name}"  name="name" placeholder="Name" required>
+      <input type="text"  th:value="*{mail}"  name="mail" placeholder="Email" required>
+      <input type="password" th:value="*{password}" name="password" placeholder="Password" required>
+      <input type="text"  th:value="*{birthdate}"  name="birthdate" placeholder="Birthdate(yyyy-mm-dd)" required>
+      <input type="text" th:value="*{phone}" name="phone" placeholder="Phone" required>
+      <button class="w3-btn w3-black  w3-hover-red button_enter up" type="submit"> Save</button>
+      <a class="w3-btn w3-black  w3-hover-red button_enter up" href="/loja" value="Back" style="text-align: center">Back</a>
+    </div>
+
+
+    <div class="col" id="myDIV" >
+      <div class="title" >
+        <span class="w3-black w3-large" style="padding: 10px;">Order History</span>
+      </div>
+
+      <div class="col-order" th:each="order: ${Orders}">
+        <h3>Date:</h3>
+        <p1 th:text="${order.o_date}"><br> </p1>
+        <h3>Status: </h3>
+        <p1 th:text="${order.payment_status}"> <br> </p1>
+        <h3>Total: </h3>
+        <p1 th:text="${order.total} + '€'"><br> </p1>
+      </div>
+    </div>
+
+  </div>
+</form>
+
+
+<footer class="footer">
+  <h2 style="position: relative; left: 25px; ">Contacts:</h2>
+  <p1 style="position: relative; left: 35px; ">Phone number: 916799092 <br>Mail: farmers@market.pt<br>Addres: Rua das Couves </p1>
+</footer>
+
+</body>
+
+</html>
